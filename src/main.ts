@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-
-createApp(App).mount('#app')
+import {createPureUI} from 'sheep-design-vue'
+import 'sheep-design-vue/dist/style.css'
+createApp(App).use(createPureUI()).mount('#app')
