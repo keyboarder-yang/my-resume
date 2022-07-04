@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "deploy.sh"
   },
   "dependencies": {
     "sheep-design-vue": "^1.0.2",
