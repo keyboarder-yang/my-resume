@@ -1,125 +1,164 @@
 <template>
-  <div class="container-fluid">
-    <!-- Start 顶部导航栏 -->
-    <div class="nav">
-      <div class="nav-contents">
-        <div class="nav-logo-area">
-          <img src="../assets/logo.png" alt="个人简历" width="40">
-          <span class="nav-logo-text">YangHong</span>
-        </div>
-        <div class="nav-bars-area">
-          <div class="nav-bar-item" v-for="(nav,index) in navBars" @click="handleNavClick(index)">
-            <a class="nav-bar-item-label" :href="nav.href" :class="{active: currentIndex===index}">{{ nav.name }}</a>
-          </div>
-        </div>
+  <div class="header">
+
+    <div class="index__top"></div>
+    <div class="index__waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+           viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7"/>
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)"/>
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)"/>
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(255,255,255,1)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="index__modules">
+      <div class="modules__item">
+        <img src="../assets/img/resume.svg" width="100%" height="100%">
+      </div>
+      <div class="modules__item">
+        <img src="../assets/img/company.svg" width="100%" height="100%">
+      </div>
+      <div class="modules__item">
+        <img src="../assets/img/work.svg" width="100%" height="100%">
+      </div>
+      <div class="modules__item">
+        <img src="../assets/img/skill.svg" width="100%" height="100%">
+      </div>
+      <div class="modules__item">
+        <img src="../assets/img/contact.svg" width="100%" height="100%">
       </div>
     </div>
-    <!-- End 顶部导航栏 -->
-
-    <div class="test" :id="item.id" v-for="(item,index) in navBars">{{item.name}}</div>
+    <div class="index__title"></div>
   </div>
+
 </template>
+<script setup>
 
-<script lang='ts' setup>
-import {ref} from 'vue'
-
-/**
- *@Author: YangHong
- *@CreateDate: 2022/8/13
- *@LastModifiedDate: 2022/8/13 13:58
- *@Description:
- */
-const navBars = ref([
-  {name: '主页',id:'home',href:'#home'},
-  {name: '个人技能',id:'skill',href:'#skill'},
-  {name: '项目经历',id:'experience',href:'#experience'},
-  {name: '关于我',id:'about',href:'#about'},
-  {name: '联系我',id:'contact',href:'#contact'},
-])
-const currentIndex = ref(0)
-const handleNavClick = (index:number) => {
-  currentIndex.value = index
-}
 </script>
 
-<style scoped lang="less">
-@primary-color: #ED7457;
-@primary-color-transparent: rgba(237,116,87,.3);
-.nav {
-  position: sticky;
-  top: 0;
-  box-shadow: 0 5px 5px 0 #dddddd;
-  padding: 5px 60px;
-  box-sizing: border-box;
-  font-family: 'resume';
-  .nav-contents {
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
-    display: flex;
+<style scoped>
+.header {
+  position: relative;
+  text-align: center;
+  /*background: linear-gradient(60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);*/
+  background: linear-gradient(60deg, #B1F78B 0%, #00BFA6 100%);
+}
 
-    .nav-logo-area {
-      flex: 1;
-      .nav-logo-text{
-        display: inline-block;
-        margin-left: 40px;
-        font-weight: bolder;
-      }
+.index__title{
+  position: absolute;
+  font-size: 140px;
+  text-align: center;
+  color: #ffffff;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  letter-spacing: 50px;
+}
 
-      img{
-        vertical-align: middle;
-      }
-    }
+.index__modules {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 300px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  z-index: 1;
+}
 
-    .nav-bars-area {
-      flex: 1;
-      display: flex;
+.modules__item {
+  flex: 1;
+  height: 100%;
+  background-color: rgba(255, 255, 255, .6);
+  backdrop-filter: saturate(50%) blur(8px);
+  border-radius: 15px;
+  animation: vertical-move-forever 5s cubic-bezier(.55, .5, .45, .5) infinite;
+}
+.modules__item:nth-child(2){
+  animation-delay: 1s;
+}
+.modules__item:nth-child(3){
+  animation-delay: 2s;
+}
+.modules__item:nth-child(4){
+  animation-delay: 3s;
+}
+.modules__item:nth-child(5){
+  animation-delay: 4s;
+}
 
-      .nav-bar-item {
-        flex: 1;
-        text-align: center;
-        user-select: none;
-        cursor: pointer;
+.index__top {
+  height: 65vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-        .nav-bar-item-label {
-          box-sizing: border-box;
-          display: inline-block;
-          height: 100%;
-          min-width: 60%;
-          position: relative;
-          letter-spacing: 3px;
-          text-decoration: none;
-          color: black;
-        }
-        .nav-bar-item-label:hover{
-          font-weight: bolder;
-          color: @primary-color;
-        }
-        .nav-bar-item-label:before {
-          position: absolute;
-          bottom: -4px;
-          left: 0;
-          content: '';
-          height: 4px;
-          width: 0%;
-          transition: all .5s;
-          background-color: @primary-color;
-        }
-        .nav-bar-item-label:hover:before {
-          width: 100%;
-        }
-      }
+.waves {
+  position: relative;
+  width: 100%;
+  height: 15vh;
+  margin-bottom: -7px; /*Fix for safari gap*/
+  min-height: 100px;
+  max-height: 150px;
+}
 
-    }
+/* Animation */
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+}
+
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+  100% {
+    transform: translate3d(85px, 0, 0);
   }
 }
-.active{
-  border-bottom: 4px solid @primary-color;
-  color: @primary-color;
-  font-weight: bolder;
-}
-
-.test{
-  height: 800px;
+@keyframes vertical-move-forever {
+  0% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(-20px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  75% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 </style>
